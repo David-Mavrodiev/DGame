@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar navbar-default navbar-fixed-top">
+                <header id="header-site">
+                    <div class="logo-site">
+                        <h1><a href="#">Leistung</a></h1>
+                    </div>
+
+                    <!--Begin::Mobile View Navigation-->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--End::Mobile View Navigation-->
+                    <!--Begin::Nav-->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                    <!--End::Nav-->
+
+                </header>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    <footer class="container-fluid text-center foot">
+        <div class="copyrights">
+            <p class="red-bold-label">
+                DTeam © @DateTime.Now.Year
+            </p>
+            <hr class="dark-line">
+            <a class="link" href="#">Contact Us</a>&nbsp
+            <a class="link" href="#">Privacy Policy</a>&nbsp
+            <a class="link" href="#">Terms & Conditions</a>
+            <br><br>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
