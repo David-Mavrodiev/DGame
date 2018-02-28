@@ -285,8 +285,15 @@ body {
 
 /*FOOTER*/
 
+footer {
+    border-top: 2px solid #cf4137;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
 .copyrights {
-    margin-top: 25px;
+   
 }
 
 footer.container-fluid.text-center.foot {
@@ -316,6 +323,13 @@ a.link {
 
 .footimg {
     width: 5rem;
+}
+
+#frame-div {
+    margin: 0 auto;
+    width: 800px;
+    height: 600px;
+    margin: 50px;
 }
 
 @media(max-width:768px) {

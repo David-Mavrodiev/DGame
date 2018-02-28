@@ -1,0 +1,26 @@
+﻿@model DGame.Web.Models.CreateGameViewModel
+
+@{
+    ViewBag.Title = "Upload Game";
+}
+
+
+<h2>Upload Game</h2>
+
+@using (Html.BeginForm("Upload", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div>
+    @Html.LabelFor(m => m.Name);
+    @Html.TextBoxFor(m => m.Name)
+
+    @Html.LabelFor(m => m.Description);
+    @Html.TextAreaFor(m => m.Description)
+
+    @Html.TextBox("File", "", new { type = "file" }) <br />
+
+    <input type="submit" value="Upload" />
+
+    @ViewBag.Message
+</div>
+}

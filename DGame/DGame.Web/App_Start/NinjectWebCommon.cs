@@ -7,6 +7,7 @@ namespace DGame.Web.App_Start
     using System.Web;
     using DGame.Data;
     using DGame.Data.Contracts;
+    using DGame.Data.Repository;
     using DGame.DataModels;
     using DGame.Web.Services;
     using DGame.Web.Services.Contracts;
@@ -69,13 +70,10 @@ namespace DGame.Web.App_Start
         {
             kernel.Bind<IDGameDbContext>().To<DGameDbContext>();
 
-            kernel.Bind<IUserStore<User>>().To<UserStore<User>>();
-            kernel.Bind<UserManager<User>>().ToSelf();
-
-            kernel.Bind<ApplicationUserManager>().ToSelf();
-            kernel.Bind<ApplicationSignInManager>().ToSelf();
+            kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>));
 
             kernel.Bind<IStorageService>().To<StorageService>();
+            kernel.Bind<IGameService>().To<GameService>();
         }        
     }
 }

@@ -1,0 +1,13 @@
+﻿@model DGame.Web.Models.GameRenderViewModel
+
+@{
+    ViewBag.Title = "Play";
+}
+
+<div id="frame-div" style="margin: 0 auto;width:800px;height:600px;">
+    <canvas style="background-color: white" id="game-canvas" width="800" height="600"></canvas>
+    @foreach (var script in Model.Scripts)
+    {
+        <script src="/Game/GetFile?gameName=@Model.Name&filename=@script"></script>
+    }
+</div>

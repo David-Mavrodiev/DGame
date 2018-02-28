@@ -10,6 +10,7 @@ namespace DGame.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(DGame.Data.DGameDbContext context)

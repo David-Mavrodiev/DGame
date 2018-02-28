@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid body-wrapper">
         <div class="row">
             <div class="navbar navbar-default navbar-fixed-top">
                 <header id="header-site">
@@ -30,7 +30,10 @@
                         <ul class="nav navbar-nav navbar-left">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Upload Game", "Upload", "Game")</li>
+                            }
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>
@@ -47,16 +50,9 @@
     </div>
 
     <footer class="container-fluid text-center foot">
-        <div class="copyrights">
-            <p class="red-bold-label">
-                DTeam © @DateTime.Now.Year
-            </p>
-            <hr class="dark-line">
-            <a class="link" href="#">Contact Us</a>&nbsp
-            <a class="link" href="#">Privacy Policy</a>&nbsp
-            <a class="link" href="#">Terms & Conditions</a>
-            <br><br>
-        </div>
+        <strong class="red-bold-label">
+            DTeam © @DateTime.Now.Year
+        </strong>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")

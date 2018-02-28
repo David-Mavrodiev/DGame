@@ -2,8 +2,12 @@
 {
     public interface IStorageService
     {
-        byte[] GetFile();
+        string TempStoragePath { get; set; }
 
-        void SaveFile(string filename, byte[] fileData);
+        byte[] GetFile(string filename);
+
+        void SaveFile(string filename, string path);
+
+        void StartFileListener();
     }
 }

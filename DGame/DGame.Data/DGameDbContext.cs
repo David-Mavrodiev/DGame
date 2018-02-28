@@ -1,4 +1,5 @@
 ﻿using DGame.Data.Contracts;
+using DGame.Data.Migrations;
 using DGame.DataModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
@@ -10,9 +11,12 @@ namespace DGame.Data
         public DGameDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DGameDbContext, Configuration>("DefaultConnection"));
         }
 
-        public IDbSet<Peer> Peers { get; set; }
+        public IDbSet<Game> Games { get; set; }
+
+        public IDbSet<View> Views { get; set; }
 
         public static DGameDbContext Create()
         {

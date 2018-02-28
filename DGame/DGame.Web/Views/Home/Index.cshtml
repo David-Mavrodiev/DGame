@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<DGame.DataModels.Game>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -7,66 +9,37 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb60 text-center">
-            <h2 class="gold-bold-label">Profile Card bootstrap dark layout</h2>
+            <h2 class="gold-bold-label">Top games</h2>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-            <div class="tutor-block">
-                <div class="tutor-img">
-                    <img src="http://via.placeholder.com/296x211">
+        @foreach (var game in Model)
+        {
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
+                <div class="tutor-block">
+                    <div class="tutor-img">
+                        <img height="300" width="200" src="/Game/GetFile?gameName=@game.Name&filename=logo.jpg">
+                    </div>
+                    <div class="tutor-content">
+                        <h5 class="tutor-title">
+                            @if (Request.IsAuthenticated)
+                            {
+                                @Html.ActionLink(game.Name, "Play", "Game", new { id = game.Id }, null)
+                            }
+                            else
+                            {
+                                @game.Name
+                                <br />
+                                <small>Log in to play</small>
+                            }
+                        </h5>
+                        <span class="tutor-designation">(@game.Owner.UserName)</span>
+                        <p>@game.Description</p>
+                    </div>
                 </div>
-                <div class="tutor-content">
-                    <h5 class="tutor-title">Carmelo Ugalde</h5>
-                    <span class="tutor-designation">(Designation title)</span>
-                    <p>Quisque malesuada nullanec mivarius efficitur. stibulum sollicitudin tortor vellorem.</p>
-                </div>
-            </div>
-            <div class="social-media">
-                <span><a href="#"><i class="fa fa-facebook-square"></i></a></span>
-                <span><a href="#"><i class="fa  fa-twitter-square"></i></a></span>
-                <span><a href="#"><i class="fa   fa-youtube-square"></i></a></span>
-                <span><a href="#"><i class="fa  fa-linkedin-square"></i></a></span>
-                <span><a href="#"><i class="fa   fa-instagram"></i></a></span>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-            <div class="tutor-block">
-                <div class="tutor-img">
-                    <img src="http://via.placeholder.com/296x211">
-                </div>
-                <div class="tutor-content">
-                    <h5 class="tutor-title">LAUREL FOSTER</h5>
-                    <span class="tutor-designation">(Designation title)</span>
-                    <p>Maecenas ut tortor doloestibulum lacinia orci semplacerat convallis nrum vitae. </p>
+                <div class="social-media">
                 </div>
             </div>
-            <div class="social-media">
-                <span><a href="#"><i class="fa fa-facebook-square"></i></a></span>
-                <span><a href="#"><i class="fa  fa-twitter-square"></i></a></span>
-                <span><a href="#"><i class="fa   fa-youtube-square"></i></a></span>
-                <span><a href="#"><i class="fa  fa-linkedin-square"></i></a></span>
-                <span><a href="#"><i class="fa   fa-instagram"></i></a></span>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-            <div class="tutor-block">
-                <div class="tutor-img">
-                    <img src="http://via.placeholder.com/296x211">
-                </div>
-                <div class="tutor-content">
-                    <h5 class="tutor-title">BARBARA GILLUM</h5>
-                    <span class="tutor-designation">(Designation title)</span>
-                    <p>Asem luctus libero lerdum viverrasem faucibus nontiam vel fringillaeed euarcu samo.</p>
-                </div>
-            </div>
-            <div class="social-media">
-                <span><a href="#"><i class="fa fa-facebook-square"></i></a></span>
-                <span><a href="#"><i class="fa  fa-twitter-square"></i></a></span>
-                <span><a href="#"><i class="fa   fa-youtube-square"></i></a></span>
-                <span><a href="#"><i class="fa  fa-linkedin-square"></i></a></span>
-                <span><a href="#"><i class="fa   fa-instagram"></i></a></span>
-            </div>
-        </div>
+        }
     </div>
 </div>
