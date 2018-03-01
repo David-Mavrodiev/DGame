@@ -3,24 +3,34 @@
 @{
     ViewBag.Title = "Upload Game";
 }
-
-
-<h2>Upload Game</h2>
+<h2 class="gold-bold-label">Upload Game</h2>
 
 @using (Html.BeginForm("Upload", "Game", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+<div class="col-md-6">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "gold-label" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
 
-<div>
-    @Html.LabelFor(m => m.Name);
-    @Html.TextBoxFor(m => m.Name)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "gold-label" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
 
-    @Html.LabelFor(m => m.Description);
-    @Html.TextAreaFor(m => m.Description)
+    <div class="form-group">
+        <div class="row setup-content">
+            <div class="col-xs-8">
+                <div class="col-md-8 well text-center file-uploader">
+                    <label for="fileToUpload">Upload your game as .zip</label><br />
+                    @Html.TextBox("File", "", new { type = "file" }) <br />
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @Html.TextBox("File", "", new { type = "file" }) <br />
-
-    <input type="submit" value="Upload" />
+    <input class="file-uploader" type="submit" value="Submit" />
+</div>
 
     @ViewBag.Message
-</div>
 }

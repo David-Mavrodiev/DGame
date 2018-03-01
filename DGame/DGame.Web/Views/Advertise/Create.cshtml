@@ -1,0 +1,33 @@
+﻿@model DGame.Web.Models.CreateAdvertiseViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create advert</h2>
+
+@using (Html.BeginForm("Create", "Advertise", FormMethod.Post, new { enctype = "multipart/form-data", id = "advert-form" }))
+{
+    <div class="col-md-6">
+        <div class="form-group">
+            <div class="row setup-content">
+                <div class="col-xs-8">
+                    <div class="col-md-8 well text-center file-uploader">
+                        <label for="fileToUpload">Select advert image</label><br />
+                        @Html.TextBox("File", "", new { type = "file" }) <br />
+                        @Html.TextBoxFor(m => m.TransactionHash, new { hidden = "hidden" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input class="file-uploader" type="submit" value="Submit" />
+    </div>
+
+    @ViewBag.Message
+}
+
+<script src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethjs@0.3.0/dist/ethjs.min.js"></script>
+
+<script src="~/Scripts/web3-payment.js"></script>

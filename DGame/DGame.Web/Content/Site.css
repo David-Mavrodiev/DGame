@@ -27,6 +27,12 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
+.file-uploader {
+    background-color: #cf4137;
+    border-color: gold;
+    color: gold;
+}
+
 a {
     text-decoration: none;
     color: #6c6c6c;

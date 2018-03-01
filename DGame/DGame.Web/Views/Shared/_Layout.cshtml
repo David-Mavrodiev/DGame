@@ -33,6 +33,7 @@
                             @if (Request.IsAuthenticated)
                             {
                                 <li>@Html.ActionLink("Upload Game", "Upload", "Game")</li>
+                                <li>@Html.ActionLink("Create Advert", "Create", "Advertise")</li>
                             }
                         </ul>
                         @Html.Partial("_LoginPartial")

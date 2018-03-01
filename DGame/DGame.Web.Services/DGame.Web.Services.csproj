@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertService.cs" />
+    <Compile Include="Contracts\IAdvertService.cs" />
     <Compile Include="Contracts\IGameService.cs" />
     <Compile Include="Contracts\IStorageService.cs" />
     <Compile Include="GameService.cs" />

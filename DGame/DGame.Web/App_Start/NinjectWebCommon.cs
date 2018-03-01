@@ -74,6 +74,7 @@ namespace DGame.Web.App_Start
 
             kernel.Bind<IStorageService>().To<StorageService>();
             kernel.Bind<IGameService>().To<GameService>();
-        }        
+            kernel.Bind<IAdvertService>().To<AdvertService>();
+        }
     }
 }

@@ -18,6 +18,8 @@ namespace DGame.Data
 
         public IDbSet<View> Views { get; set; }
 
+        public IDbSet<Advert> Adverts { get; set; }
+
         public static DGameDbContext Create()
         {
             return new DGameDbContext();
