@@ -21,19 +21,19 @@ var address = '0xf04057D9E0A5922AB31109152fAB3942593A8B96'
 function startApp(web3) {
     const eth = new Eth(web3.currentProvider)
     const token = eth.contract(abi).at(contract_address);
-    console.log(token);
+    
     listenForClicks(token, web3)
 }
 
 function listenForClicks(miniToken, web3) {
     web3.eth.getAccounts(function (err, accounts) { console.log(accounts); address = accounts.toString(); })
 
-    $("#advert-form").submit(function (event) {
+    $("#cashout").on('click', function () {
         let transactionHash = $("#TransactionHash").val();
         if (transactionHash == "" || transactionHash == null) {
             event.preventDefault();
 
-            miniToken.transfer({ from: address, gas: 3000000, value: 20000000000000000 })
+            miniToken.transferFunds({ from: address, gas: 3000000, value: 0 })
                 .then(function (txHash) {
                     console.log('Transaction sent')
                     console.dir(txHash)
@@ -46,17 +46,17 @@ function listenForClicks(miniToken, web3) {
 }
 
 async function waitForTxToBeMined(txHash) {
-        try {
-            await web3.eth.getTransactionReceipt(txHash, indicateSuccess)
-        } catch (err) {
-            return indicateFailure(err)
-        }
+    try {
+        await web3.eth.getTransactionReceipt(txHash, indicateSuccess)
+    } catch (err) {
+        return indicateFailure(err)
+    }
 }
 
 function indicateFailure(error) {
-    console.log(error);
+    alert("Error occured...");
 }
 
 function indicateSuccess() {
-    $("#advert-form").submit();
+    alert("Transaction is pending...");
 }

@@ -10,7 +10,7 @@
         <div class="tutor-content">
             <h2 class="gold-bold-label">Manage profile</h2>
             <div>
-                
+
                 @if (Model.HasPassword)
                 {
                     @Html.ActionLink("Change your password", "ChangePassword")
@@ -19,9 +19,9 @@
                 {
                     @Html.ActionLink("Create", "SetPassword")
                 }
-                
+
             </div>
-            
+
             <hr />
             <h3>You have @Model.ViewsCount new views of your games...</h3>
 
@@ -29,10 +29,15 @@
             {
                 <h4>You can get your $@(Model.ViewsCount * 0.1) dollars now, just click cashout button!!!</h4>
             }
-            
+
             <input id="cashout" type="button" value="Cash out" />
         </div>
     </div>
     <div class="social-media">
     </div>
 </div>
+
+<script src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ethjs@0.3.0/dist/ethjs.min.js"></script>
+
+<script src="~/Scripts/web3-cashout.js"></script>
