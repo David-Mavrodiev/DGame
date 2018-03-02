@@ -1,13 +1,19 @@
 ﻿@model DGame.Web.Models.CreateAdvertiseViewModel
 
 @{
-    ViewBag.Title = "Create";
+                /**/
+
+                ViewBag.Title = "Create";
 }
 
 <h2>Create advert</h2>
 
 @using (Html.BeginForm("Create", "Advertise", FormMethod.Post, new { enctype = "multipart/form-data", id = "advert-form" }))
 {
+    <div class="form-group">
+        @Html.LabelFor(m => m.Link, new { @class = "gold-label" })
+        @Html.TextBoxFor(m => m.Link, new { @class = "form-control" })
+    </div>
     <div class="col-md-6">
         <div class="form-group">
             <div class="row setup-content">

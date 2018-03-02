@@ -23,5 +23,11 @@ namespace DGame.DataModels
         public DateTime DateCreated { get; set; }
 
         public string TransactionHash { get; set; }
+
+        public string FileName { get; set; }
+
+        public string Link { get; set; }
+
+        public bool IsExpired { get; set; }
     }
 }

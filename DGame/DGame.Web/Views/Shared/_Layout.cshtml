@@ -30,6 +30,7 @@
                         <ul class="nav navbar-nav navbar-left">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Games", "Show", "Game")</li>
                             @if (Request.IsAuthenticated)
                             {
                                 <li>@Html.ActionLink("Upload Game", "Upload", "Game")</li>
@@ -47,8 +48,10 @@
 
     <div class="container body-content">
         @RenderBody()
-
     </div>
+
+    @Html.Action("Render", "Advertise")
+
 
     <footer class="container-fluid text-center foot">
         <strong class="red-bold-label">

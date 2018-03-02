@@ -1,4 +1,5 @@
-﻿using DGame.Web.Models;
+﻿using DGame.DataModels;
+using DGame.Web.Models;
 using DGame.Web.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -29,13 +30,14 @@ namespace DGame.Web.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Upload(CreateGameViewModel viewModel)
         {
             this.storageService.TempStoragePath = Server.MapPath("~/Temp");
 
-            try
-            {
+            //try
+            //{
                 if (viewModel.File.ContentLength > 0)
                 {
                     string filename = Path.GetFileName(viewModel.File.FileName);
@@ -49,14 +51,15 @@ namespace DGame.Web.Controllers
                 ViewBag.Message = "File Uploaded Successfully!!";
                 
                 return View();
-            }
-            catch
-            {
-                ViewBag.Message = "File upload failed!!";
-                return View();
-            }
+            //}
+            //catch
+            //{
+            //    ViewBag.Message = "File upload failed!!";
+            //    return View();
+            //}
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Play(Guid id)
         {
@@ -121,6 +124,16 @@ namespace DGame.Web.Controllers
             Response.AppendHeader("Content-Disposition", cd.ToString());
 
             return File(filedata, contentType);
+        }
+
+        public ActionResult Show(string pattern = null)
+        {
+            if (pattern == null)
+            {
+                pattern = string.Empty;   
+            }
+
+            return View(this.gameService.GetByPattern(pattern).ToList());
         }
     }
 }

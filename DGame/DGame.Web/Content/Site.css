@@ -338,6 +338,15 @@ a.link {
     margin: 50px;
 }
 
+#cashout {
+    border: 2px solid #cf4137;
+    background-color: gold;
+    color: #cf4137;
+    font-weight: bold;
+    width: 200px;
+    height: 40px;
+}
+
 @media(max-width:768px) {
     .navbar-collapse {
         clear: both;

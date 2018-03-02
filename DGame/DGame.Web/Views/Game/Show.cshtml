@@ -1,0 +1,50 @@
+﻿@model List<DGame.DataModels.Game>
+
+@{
+    ViewBag.Title = "Games";
+}
+
+<form class="form-inline m-auto"></form>
+
+@using (Html.BeginForm("Show", "Game", FormMethod.Get, new { @class = "form-inline m-auto", enctype = "multipart/form-data" }))
+{
+    <input name="pattern" id="pattern" class="form-control" type="text" placeholder="Search" aria-label="Search">
+    <i class="material-icons">search</i>
+}
+
+    <div class="row">
+        @foreach (var game in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
+            <div class="tutor-block">
+                <div class="tutor-img">
+                    <img height="300" width="200" src="/Game/GetFile?gameName=@game.Name&filename=logo.jpg">
+                </div>
+                <div class="tutor-content">
+                    <h5 class="tutor-title">
+                        @if (Request.IsAuthenticated)
+                    {
+                        @Html.ActionLink(game.Name, "Play", "Game", new { id = game.Id }, null)
+                }
+                else
+                {
+                    @game.Name
+                    <br />
+                    <small>Log in to play</small>
+            }
+                    </h5>
+                    <span class="tutor-designation">(@game.Owner.UserName)</span>
+                    <p>@game.Description</p>
+                </div>
+            </div>
+            <div class="social-media">
+            </div>
+        </div>
+}
+    </div>
+
+<style>
+    nav form {
+        border: 2px solid green;
+    }
+</style>

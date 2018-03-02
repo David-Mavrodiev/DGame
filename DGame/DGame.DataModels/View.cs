@@ -24,5 +24,7 @@ namespace DGame.DataModels
 
         [ForeignKey("GameId")]
         public virtual Game Game { get; set; }
+
+        public bool IsUsed { get; set; }
     }
 }

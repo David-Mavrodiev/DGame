@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DGame.Web.Models;
+using DGame.Web.Services.Contracts;
 
 namespace DGame.Web.Controllers
 {
@@ -15,15 +16,18 @@ namespace DGame.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IGameService gameService;
 
-        public ManageController()
+        public ManageController(IGameService gameService)
         {
+            this.gameService = gameService;
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IGameService gameService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.gameService = gameService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -64,13 +68,17 @@ namespace DGame.Web.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+
+            var newViewsCount = this.gameService.GetCountOfNewViews(userId);
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                ViewsCount = newViewsCount
             };
             return View(model);
         }

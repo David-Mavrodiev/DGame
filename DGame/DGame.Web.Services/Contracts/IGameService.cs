@@ -13,5 +13,9 @@ namespace DGame.Web.Services.Contracts
         void AddView(Guid gameId, string userName);
 
         IQueryable<Game> GetTop(int count);
+
+        IQueryable<Game> GetByPattern(string pattern);
+
+        int GetCountOfNewViews(string userId);
     }
 }
