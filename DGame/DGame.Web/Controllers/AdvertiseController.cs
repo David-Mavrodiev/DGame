@@ -1,4 +1,5 @@
 ﻿using DGame.Data.Repository;
+using DGame.DataModels;
 using DGame.Web.Models;
 using DGame.Web.Services.Contracts;
 using System;
@@ -59,9 +60,28 @@ namespace DGame.Web.Controllers
             return File(filedata, contentType);
         }
 
-        public ActionResult Render()
+        public ActionResult Render(string section = "left")
         {
-            var adverts = this.advertService.GetAll().ToList();
+            List<Advert> adverts = null;
+
+            if (section == "left")
+            {
+                adverts = this.advertService.GetAll().Take(5).ToList();
+            }
+            else if (section == "right")
+            {
+                var all = this.advertService.GetAll();
+
+                if (all.Count() > 5)
+                {
+                    adverts = this.advertService.GetAll().Skip(5).Take(5).ToList();
+                }
+                else
+                {
+                    adverts = new List<Advert>();
+                }
+            }
+
             List<Tuple<string, string>> filenames = new List<Tuple<string, string>>();
 
             foreach (var advert in adverts)

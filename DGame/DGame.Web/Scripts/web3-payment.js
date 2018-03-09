@@ -6,16 +6,7 @@
         alert("Install MetaMask");
     }
 });
-const abi = [
-    { "constant": false, "inputs": [], "name": "transferFunds", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" },
-    { "constant": false, "inputs": [{ "name": "name", "type": "string" }, { "name": "addr", "type": "address" }], "name": "addGame", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" },
-    { "constant": false, "inputs": [{ "name": "name", "type": "string" }, { "name": "viewer", "type": "address" }], "name": "addViewToGame", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" },
-    { "constant": false, "inputs": [], "name": "transfer", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" },
-    { "constant": true, "inputs": [], "name": "owner", "outputs": [{ "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" },
-    { "constant": true, "inputs": [{ "name": "addr", "type": "address" }], "name": "getFunds", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" },
-    { "inputs": [], "payable": true, "stateMutability": "payable", "type": "constructor" }
-]
-const contract_address = '0x9a6131D0A5B91231A28B5d5F875639BaDA597BF5'
+
 const etherValue = web3.toWei(0.2, 'ether');
 var address = '0xf04057D9E0A5922AB31109152fAB3942593A8B96'
 function startApp(web3) {

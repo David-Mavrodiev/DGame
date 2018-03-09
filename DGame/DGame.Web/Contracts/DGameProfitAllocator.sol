@@ -29,7 +29,7 @@ contract DGameProfitAllocator {
         return funds[addr];
     }
     
-    function transferFunds() public {
+    function transferFunds() public payable {
         require(allViewsByProfile[msg.sender] > 0);
         require(this.balance > 0);
         
@@ -42,5 +42,13 @@ contract DGameProfitAllocator {
     function transfer() public payable {
         require(msg.value >= ADVERTISE_TAX);
         funds[msg.sender] += msg.value;
+    }
+    
+    function getBalance() public view returns(uint) {
+        return this.balance;
+    }
+    
+    function getViews(address addr) public view returns(uint) {
+        return allViewsByProfile[addr];
     }
 }
